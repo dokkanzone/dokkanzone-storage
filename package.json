@@ -1,0 +1,12 @@
+{
+  "name": "dokkanzone-storage",
+  "version": "1.0.0",
+  "description": "Dokkanzone assets & datas",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "author": "dokkanzone",
+  "license": "ISC"
+}
