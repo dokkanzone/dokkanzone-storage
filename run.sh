@@ -1,0 +1,1 @@
+npm start && ./pull.sh
