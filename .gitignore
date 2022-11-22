@@ -6,3 +6,4 @@ assets/cards/*/ko
 assets/cards/*/zh
 databases
 database-decrypt
+git-push.sh
