@@ -1,1 +1,1 @@
-npm start && ./pull.sh
+./pull.sh && npm start 
