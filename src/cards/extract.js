@@ -1,5 +1,5 @@
-import { readdirSync, rmSync } from "fs";
-import { resolve } from "path";
+import { readdirSync, rmSync, lstatSync } from "fs";
+import { join, resolve, extname } from "path";
 import {
   ASSETS_CARDS_PATH,
   CPKS_CARDS_PATH,
@@ -32,4 +32,36 @@ export function extractThumbs() {
   } catch (e) {
     console.info("🔴 Error extracting thumbnails ! ", e);
   }
+}
+
+export function extractAll() {
+  const sourcePath = resolve("./data/files/assets");
+  const destPath = resolve("./images");
+  const cpkFiles = getAllCpkFiles(sourcePath);
+
+  for (const filePath of cpkFiles) {
+    try {
+      const basePath = filePath.split(sourcePath)[1].slice(0, -4);
+      const imagePath = resolve(join(destPath, basePath));
+      extractCpk(filePath, imagePath);
+      console.info(`🟢 Extracted ${basePath} !`);
+    } catch (e) {
+      console.info(`🔴 Error extracting ${basePath} ! `, e);
+    }
+  }
+}
+
+function getAllCpkFiles(path, allFiles = []) {
+  const files = readdirSync(path);
+
+  for (const file of files) {
+    const stat = lstatSync(join(path, file));
+    if (stat.isDirectory()) {
+      getAllCpkFiles(join(path, file), allFiles);
+    } else if (extname(file) === ".cpk") {
+      allFiles.push(join(path, file));
+    }
+  }
+
+  return allFiles;
 }

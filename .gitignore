@@ -1,3 +1,4 @@
+data
 cpks
 assets/cards/*/en
 assets/cards/*/fr
@@ -7,3 +8,4 @@ assets/cards/*/zh
 databases
 database-decrypt
 git-push.sh
+images
